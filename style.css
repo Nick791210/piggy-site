@@ -24,13 +24,6 @@ section {
 
 section img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 手機裝置優化 */
-@media (max-width: 768px) {
-    section img {
-        height: auto;
-    }
+    height: auto;
+    object-fit: contain;
 }
