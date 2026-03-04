@@ -1,75 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. 初始化星空背景
-    createStars();
+    // 1. 導覽列捲動隱藏/顯示邏輯 (Scroll Direction Detection)
+    let lastScrollY = window.scrollY;
+    const navbar = document.querySelector('.navbar');
 
-    // 2. 初始化 Scroll Reveal (Intersection Observer)
-    initScrollReveal();
-});
-
-/**
- * 創建宇宙星空背景
- */
-function createStars() {
-    const starsContainer = document.getElementById('stars-container');
-    if (!starsContainer) return;
-
-    const numStars = 150; // 星星數量
-
-    for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            // 向下捲動，且距離頂端 > 100px -> 隱藏
+            navbar.classList.add('hidden');
+        } else {
+            // 向上捲動 -> 顯示
+            navbar.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
         
-        // 隨機位置
-        const xy = getRandomPosition();
-        star.style.left = `${xy[0]}vw`;
-        star.style.top = `${xy[1]}vh`;
-        
-        // 隨機大小
-        const size = Math.random() * 3 + 1; // 1px to 4px
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        
-        // 隨機閃爍延遲與週期
-        const animationDelay = Math.random() * 5;
-        const animationDuration = Math.random() * 3 + 2;
-        star.style.animationDelay = `${animationDelay}s`;
-        star.style.animationDuration = `${animationDuration}s`;
+        // 浮動按鈕在英雄區塊(hero)時稍微透明
+        const floatingBtn = document.querySelector('.floating-cta');
+        if (window.scrollY < 500) {
+            floatingBtn.style.opacity = '0.5';
+            floatingBtn.style.transform = 'scale(0.9)';
+        } else {
+            floatingBtn.style.opacity = '1';
+            floatingBtn.style.transform = 'scale(1)';
+        }
+    });
 
-        starsContainer.appendChild(star);
-    }
-}
-
-function getRandomPosition() {
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    return [x, y];
-}
-
-/**
- * 滾動進場特效
- */
-function initScrollReveal() {
-    const revealElements = document.querySelectorAll(
-        '.fade-up, .fade-left, .fade-right, .fade-in, .animate-fade-in-up'
-    );
-
-    const revealOptions = {
-        root: null, // viewport
-        rootMargin: '0px 0px -100px 0px', // 在距離底部 100px 時觸發
-        threshold: 0.1 // 至少 10% 進入畫面才觸發
+    // 2. Intersection Observer 入序動畫 (Fade In Up)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 // 當元素露出 15% 時觸發
     };
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const animateObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // 可選：如果要元素只進場一次，可以加這行取消觀察
-                // observer.unobserve(entry.target);
+                entry.target.classList.add('is-visible');
+                // 觸發後即取消觀察，確保動畫只播放一次
+                observer.unobserve(entry.target);
             }
         });
-    }, revealOptions);
+    }, observerOptions);
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
-}
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach(el => animateObserver.observe(el));
+    
+    // 初始化確保 hero 區塊即使沒有捲動也會呈現
+    setTimeout(() => {
+        const firstElements = document.querySelectorAll('#hero .animate-on-scroll');
+        firstElements.forEach(el => el.classList.add('is-visible'));
+    }, 100);
+});

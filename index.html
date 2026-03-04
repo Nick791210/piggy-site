@@ -1,168 +1,147 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>火心人教室 - 一堂課剖析數位廣告的能耐</title>
-    <meta name="description" content="火心教授帶你一探數位廣告的能耐，專為後疫情時代的品牌與行銷人設計的宇宙探索風格課程。">
-    <!-- Google Fonts -->
+    <title>火心人教室 - 數位廣告大解密</title>
+    <meta name="description" content="幫助在電商紅海中迷航的品牌主、新鮮人與行銷菜鳥，用最理性客觀的數據邏輯，剖析數位廣告的真實成效。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- 宇宙星空背景層 -->
     <div id="stars-container"></div>
     <div class="twinkling"></div>
 
-    <!-- 0. 首圖區 Hero Section -->
-    <section id="hero" class="section-container">
-        <div class="container hero-content">
-            <div class="hero-text animate-fade-in-up">
-                <h2 class="subtitle glow-text">火心人教室</h2>
-                <h1 class="main-title text-gradient">一堂課剖析<br>數位廣告的能耐</h1>
-                <a href="#cta" class="cta-button primary-btn pulsate">立即了解任務</a>
+    <!-- 頂部導覽列 -->
+    <nav class="navbar has-glassmorphism">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-rocket"></i>
+                <span>火心人教室</span>
             </div>
-            <div class="hero-image floating">
-                <img src="assets/images/0.png" alt="宇宙探索與火心人教室">
+            <div class="nav-links">
+                <a href="#hero">課程精華</a>
+                <a href="#content">三大核心</a>
+                <a href="#instructor">火心教授</a>
+                <a href="#guarantee">三大保證</a>
             </div>
+            <a href="#pricing" class="btn btn-primary nav-cta">立即報名 <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-        </div>
-        <div class="cloud-divider cloud-top"></div>
-    </section>
+    </nav>
 
-    <!-- 1. 痛點解析 Pain Points -->
-    <section id="pain-points" class="section-container dark-bg relative-layer">
-        <div class="container">
-            <h2 class="section-title text-center text-yellow fade-up">你是不是... 在後疫情時代...</h2>
-            <div class="pain-points-grid">
-                <div class="point-card glassmorphism fade-up delay-1">
-                    <h3>獲客成本攀升</h3>
-                    <p>廣告投放越來越貴，轉換率卻不見起色？</p>
-                </div>
-                <div class="point-card glassmorphism fade-up delay-2">
-                    <h3>數據眼花撩亂</h3>
-                    <p>看著一推報表，卻不知道下一步該怎麼優化？</p>
-                </div>
-                <div class="point-card glassmorphism fade-up delay-3">
-                    <h3>缺乏整體策略</h3>
-                    <p>只會下廣告，卻沒有將流量轉化為長期品牌資產？</p>
-                </div>
+    <main class="main-content">
+        <!-- 第 1 區塊：首圖與痛點引發 (對應 0.png & 1.png) -->
+        <section id="hero" class="section-block">
+            <div class="image-wrapper animate-on-scroll">
+                <img src="images/0.png" alt="代理商從業投手大解密，一堂課剖析數位廣告的能耐" class="content-img">
             </div>
-            <div class="mascot-left floating delay-2">
-                <img src="assets/images/1.png" alt="困擾的太空人">
+            <div class="image-wrapper animate-on-scroll">
+                <img src="images/1.png" alt="你真的確定數位廣告是業績成長的仙丹？" class="content-img">
             </div>
-        </div>
-        <div class="cloud-divider cloud-bottom"></div>
-    </section>
+        </section>
 
-    <!-- 2. 課程核心 Course Core -->
-    <section id="course-core" class="section-container deep-space-bg">
-        <div class="container">
-            <h2 class="section-title text-center text-pink fade-up text-glow">課程 3 大核心模組</h2>
-            <div class="core-modules">
-                <img src="assets/images/2.png" alt="課程核心架構飛碟" class="core-image floating-slow">
-                <div class="module-descriptions">
-                    <div class="module-item fade-right delay-1">
-                        <div class="module-icon">🛸</div>
-                        <div class="module-text">
-                            <h4>概念建立</h4>
-                            <p>重新定義數位廣告在你商業模式中的角色。</p>
-                        </div>
+        <!-- 第 2 區塊：課程內容與核心價值 (對應 2.png) -->
+        <section id="content" class="section-block">
+            <div class="section-header animate-on-scroll">
+                <h2>不再憑感覺下決策</h2>
+                <p>掌握數據思維，看透數位廣告的真實能耐</p>
+            </div>
+            <div class="image-wrapper animate-on-scroll">
+                <img src="images/2.png" alt="這堂課我們會交給你 3 大核心：概念、邏輯、數據" class="content-img drop-shadow">
+            </div>
+        </section>
+
+        <!-- 第 3 區塊：講師介紹 (對應 3.png) -->
+        <section id="instructor" class="section-block">
+            <div class="section-header animate-on-scroll">
+                <h2>最理性客觀的廣告剖析</h2>
+                <p>跟著「偽經濟學家」火心教授，用 10 年經濟學思維打破你的廣告迷思</p>
+            </div>
+            <div class="image-wrapper animate-on-scroll">
+                <img src="images/3.png" alt="關於講師：火心教授" class="content-img">
+            </div>
+            <!-- 強調的數據卡片背書 -->
+            <div class="trust-badges animate-on-scroll">
+                <div class="badge">
+                    <span class="badge-num">10<span class="unit"> 年</span></span>
+                    <span class="badge-text">經濟學研讀底蘊</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-num">200<span class="unit"> 倍</span></span>
+                    <span class="badge-text">最高廣告投報率</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-num">7<span class="unit"> 個月</span></span>
+                    <span class="badge-text">理出獨家實戰理論</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第 4 區塊：目標受眾、課程保證與 CTA (對應 4.png) -->
+        <section id="guarantee" class="section-block">
+            <div class="section-header animate-on-scroll">
+                <h2>一堂課，解決你所有的困惑與煩惱</h2>
+                <p>專為品牌主、新鮮人與廣告菜鳥打造的實戰心法</p>
+            </div>
+            <div class="image-wrapper animate-on-scroll image-wrapper-relative">
+                <img src="images/4.png" alt="給品牌主與菜鳥的 3 大保證" class="content-img">
+                <!-- 用於遮蔽「虎年限時優惠 直播課程 免費聆聽」的遮罩 -->
+                <div id="text-mask" class="promo-text-mask">
+                    <div class="mask-content">
+                        <h3>限量招生 · 立即搶購</h3>
+                        <p>專屬優惠價，解決你所有的廣告困惑</p>
                     </div>
-                    <div class="module-item fade-right delay-2">
-                        <div class="module-icon">⚙️</div>
-                        <div class="module-text">
-                            <h4>運作邏輯</h4>
-                            <p>拆解平台算法，掌握讓廣告跑得更好的底層邏輯。</p>
-                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第 5 區塊：現代化聯絡與購買 CTA -->
+        <section id="pricing" class="action-section animate-on-scroll">
+            <div class="action-card has-glassmorphism">
+                <div class="action-content">
+                    <h2>準備好翻轉你的數位廣告思維了嗎？</h2>
+                    <p>立刻加入火心人教室，不再當數位廣告的冤大頭。<br>掌握數據脈絡，讓每一分預算發揮最大效益！</p>
+                    <div class="action-buttons">
+                        <a href="javascript:void(0)" class="btn btn-primary btn-large cta-pulse"
+                            onclick="alert('感謝您的報名，系統建置中！')">
+                            <i class="fa-solid fa-cart-shopping"></i> 立刻線上報名
+                        </a>
+                        <a href="javascript:void(0)" class="btn btn-secondary btn-large"
+                            onclick="alert('即將帶您前往 LINE 官方帳號！')">
+                            <i class="fa-brands fa-line"></i> 聯絡火心教授
+                        </a>
                     </div>
-                    <div class="module-item fade-right delay-3">
-                        <div class="module-icon">📊</div>
-                        <div class="module-text">
-                            <h4>數據判讀</h4>
-                            <p>教你看懂關鍵指標，用數據引導下一次的決策。</p>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- 3. 關於講師 Instructor -->
-    <section id="instructor" class="section-container galaxy-bg">
-        <div class="container instructor-layout">
-            <div class="instructor-image fade-in delay-1">
-                <img src="assets/images/3.png" alt="火心教授">
+    <!-- 底部資訊 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-rocket"></i> 火心人教室
             </div>
-            <div class="instructor-info fade-left delay-2">
-                <h2 class="section-title text-yellow glow-text">遇見你的領航員</h2>
-                <h3 class="instructor-name">火心教授</h3>
-                <p class="instructor-bio">曾在無數星系間穿梭的資深數位行銷領航員。經手超過千萬等級的廣告預算，擅長將複雜的廣告邏輯，轉化為人人都聽得懂的宇宙語言。</p>
-                <ul class="achievements">
-                    <li>🚀 操盤破億營收電商品牌</li>
-                    <li>⭐ 輔導超過 300+ 企業數位轉型</li>
-                    <li>🏆 獲選年度最佳星際行銷大師</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. 適合對象與保證 Audience & Guarantees -->
-    <section id="guarantees" class="section-container gradient-bg">
-        <div class="container text-center">
-            <h2 class="section-title mb-large fade-up">適合對象 & 我們的承諾</h2>
-            
-            <div class="audience-tags fade-up delay-1">
-                <span class="tag">企業老闆</span>
-                <span class="tag">行銷企劃</span>
-                <span class="tag">廣告操盤手</span>
-                <span class="tag">自媒體創作者</span>
-            </div>
-
-            <div class="guarantee-cards">
-                <div class="g-card glassmorphism fade-up delay-2">
-                    <div class="card-icon">🛡️</div>
-                    <h4>保證聽懂</h4>
-                    <p>白話文教學，拒絕艱澀難懂的火星文專有名詞。</p>
-                </div>
-                <div class="g-card glassmorphism fade-up delay-3">
-                    <div class="card-icon">🛠️</div>
-                    <h4>實戰落地</h4>
-                    <p>給你的不是理論，是明天就能用在工作上的方法。</p>
-                </div>
-                <div class="g-card glassmorphism fade-up delay-4">
-                    <div class="card-icon">📈</div>
-                    <h4>數據賦能</h4>
-                    <p>學會自己看懂數據，不再被錯誤的解讀帶著走。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. 行動呼籲 CTA -->
-    <section id="cta" class="section-container final-frontier-bg text-center relative-layer">
-        <div class="container">
-            <h2 class="section-title cta-title text-yellow glow-text fade-up">準備好啟動你的廣告引擎了嗎？</h2>
-            <p class="cta-subtitle fade-up delay-1">現在加入，我們在火星見！</p>
-            <div class="cta-actions fade-up delay-2">
-                <button class="cta-button primary-btn colossal-btn pulsate">🚀 立即購課 登艦</button>
-            </div>
-        </div>
-        <div class="footer-image fade-in delay-3">
-            <img src="assets/images/4.png" alt="登陸火星 插旗">
-        </div>
-    </section>
-
-    <footer>
-        <div class="container text-center text-muted">
-            <p>&copy; 2026 火心人教室 Martian Class. All planetary rights reserved.</p>
+            <p>&copy; 2026 Martian Class. All rights reserved. 用最理性客觀的角度幫你剖析數位廣告效用。</p>
         </div>
     </footer>
 
+    <!-- 浮動聯絡按鈕 -->
+    <a href="#pricing" class="floating-cta has-glassmorphism">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span>立即<br>諮詢</span>
+    </a>
+
     <script src="script.js"></script>
 </body>
+
 </html>
