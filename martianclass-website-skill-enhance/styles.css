@@ -1,0 +1,593 @@
+/* =========================================================================
+   火心人教室 - 數位廣告大解密
+   宇宙主題・現代化單頁設計 (Modern Space UI)
+   ========================================================================= */
+
+:root {
+    /* 核心色系 */
+    --color-bg-deep: #0f172a;
+    /* 深夜太空藍 */
+    --color-bg-light: #1e293b;
+    /* 星際航艦灰藍 */
+    --color-primary: #f59e0b;
+    /* 耀眼星芒黃 */
+    --color-primary-hover: #d97706;
+    --color-secondary: #0ea5e9;
+    /* 科技感亮藍 */
+    --color-secondary-hover: #0284c7;
+    --color-text-main: #f8fafc;
+    --color-text-muted: #cbd5e1;
+    --color-accent: #fb7185;
+    /* 溫暖可愛粉紅 (帶出人味) */
+
+    /* 佈局參數 */
+    --max-content-width: 900px;
+    --nav-height: 70px;
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+
+    /* 動畫設定 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 基礎重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+    color: var(--color-text-main);
+    background-color: var(--color-bg-deep);
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* =========================================================================
+   背景特效：宇宙繁星
+   ========================================================================= */
+#stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    /* 製作三層不同大小的星星圖層，增加深度感 (星星放大 3 倍) */
+    background-image:
+        radial-gradient(3px 3px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+        radial-gradient(4.5px 4.5px at 100px 150px, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0)),
+        radial-gradient(6px 6px at 40px 70px, rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0)),
+        radial-gradient(3px 3px at 150px 20px, #ffffff, rgba(0, 0, 0, 0)),
+        radial-gradient(6px 6px at 200px 100px, rgba(255, 255, 255, 0.9), rgba(0, 0, 0, 0)),
+        radial-gradient(9px 9px at 300px 50px, #f59e0b, rgba(0, 0, 0, 0)),
+        radial-gradient(4.5px 4.5px at 250px 200px, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 350px 300px;
+    /* 貼圖的重複尺寸保持不變，這樣星星看起來會更滿 */
+    /* 星星流動加快至 15 秒，並保持 4 秒閃爍 */
+    animation: twink-move 15s linear infinite, twink-pulse 4s ease-in-out infinite alternate;
+    opacity: 0.8;
+}
+
+/* 讓星星帶有緩慢流動與閃爍感 */
+@keyframes twink-move {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+
+    100% {
+        transform: translateY(-300px) translateX(-150px);
+    }
+}
+
+/* 星星的強烈明暗閃爍動畫 */
+@keyframes twink-pulse {
+    0% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* =========================================================================
+   共用元件：Glassmorphism & 按鈕
+   ========================================================================= */
+.has-glassmorphism {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), #fbbf24);
+    color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+    filter: brightness(1.1);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 16px 36px;
+    font-size: 1.15rem;
+}
+
+/* =========================================================================
+   導覽列
+   ========================================================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    z-index: 1000;
+    transition: transform var(--transition-normal);
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+}
+
+.logo i {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition-fast);
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+}
+
+/* =========================================================================
+   排版結構 & 圖片容器
+   ========================================================================= */
+.main-content {
+    margin-top: calc(var(--nav-height) + 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+    gap: 40px;
+}
+
+.section-block {
+    width: 100%;
+    max-width: var(--max-content-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 40px;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+
+.image-wrapper {
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    position: relative;
+    /* 加入柔和的光暈以融入宇宙背景 */
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.1);
+}
+
+.image-wrapper-relative {
+    position: relative;
+}
+
+.content-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.drop-shadow {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* =========================================================================
+   圖像內文遮罩 (覆蓋 4.png 特殊文案)
+   ========================================================================= */
+/* 此遮罩大約定位在原圖「虎年限時優惠...」的位置 */
+.promo-text-mask {
+    position: absolute;
+    top: 32.2%;
+    /* 微調向上，剛好切齊上緣且避開上方文字 */
+    left: 8%;
+    right: 8%;
+    height: 5.5%;
+    /* 高度稍微拉回一點確保完整遮蔽 */
+    /* 覆蓋文字區域的高度 */
+    background: linear-gradient(135deg, rgba(254, 243, 199, 0.95), rgba(253, 230, 138, 0.95));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    color: #b45309;
+    /* 深橘色文字，搭配原本的黃色調 */
+    padding: 10px;
+    z-index: 10;
+    /* 加入一點呼吸燈動畫，吸引點擊 */
+    animation: mask-pulse 3s infinite alternate;
+}
+
+.promo-text-mask h3 {
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.promo-text-mask p {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    font-weight: 700;
+    margin: 4px 0 0 0;
+    opacity: 0.8;
+}
+
+@keyframes mask-pulse {
+    from {
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    to {
+        box-shadow: 0 4px 25px rgba(245, 158, 11, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    }
+}
+
+/* =========================================================================
+   強調數據卡片背書 (信任感)
+   ========================================================================= */
+.trust-badges {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    margin-top: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    padding: 20px 32px;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.05);
+    transition: transform var(--transition-normal);
+}
+
+.badge:hover {
+    transform: translateY(-5px);
+    border-color: rgba(14, 165, 233, 0.7);
+    box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.badge-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+    background: linear-gradient(to bottom, var(--color-primary), #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge-num .unit {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: 'Noto Sans TC';
+    -webkit-text-fill-color: var(--color-text-muted);
+}
+
+.badge-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-main);
+    letter-spacing: 1px;
+}
+
+/* =========================================================================
+   結尾 CTA 區段
+   ========================================================================= */
+.action-section {
+    width: 100%;
+    max-width: var(--max-content-width);
+    margin: 40px 0 80px 0;
+}
+
+.action-card {
+    padding: 60px 40px;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.action-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.15) 0%, transparent 60%);
+    z-index: -1;
+    animation: spin-glow 10s linear infinite;
+}
+
+@keyframes spin-glow {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.action-content h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.action-content p {
+    font-size: 1.15rem;
+    margin-bottom: 32px;
+    color: var(--color-text-muted);
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cta-pulse {
+    animation: btn-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes btn-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 30px rgba(245, 158, 11, 0.7);
+    }
+}
+
+/* =========================================================================
+   Footer & 浮動按鈕
+   ========================================================================= */
+.footer {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-logo {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.footer p {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.floating-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    text-decoration: none;
+    z-index: 1000;
+    border: 2px solid var(--color-primary);
+    background: rgba(15, 23, 42, 0.8);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.floating-cta i {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.floating-cta span {
+    font-size: 0.7rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.floating-cta:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: var(--color-primary);
+    color: #000;
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.5);
+}
+
+/* =========================================================================
+   進場動畫
+   ========================================================================= */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .action-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .promo-text-mask h3 {
+        letter-spacing: 0;
+    }
+
+    .floating-cta {
+        bottom: 20px;
+        right: 20px;
+    }
+}
